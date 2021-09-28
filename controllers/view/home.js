@@ -5,20 +5,20 @@ router.get('/', async (req, res) => {
     const userId = 1;
     
     try {
-      const postData = await Post.findAll({
-        include: [User],
-      });
+      // const postData = await Post.findAll({
+      //   include: [User],
+      // });
   
-      const blogs = postData.map((post) => {
-        const data = post.get({ plain: true })
+      // const blogs = postData.map((post) => {
+      //   const data = post.get({ plain: true })
 
-        return {
-          ...data,
-          isAuthor: data.user.id === userId,
-        };
-      });
-  
-      res.render("home", {blogs})
+      //   return {
+      //     ...data,
+      //     isAuthor: data.user.id === userId,
+      //   };
+      // });
+      res.render('home');
+      // res.render("home", {blogs})
     } catch (err) {
       res.status(500).json(err);
     }
