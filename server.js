@@ -8,7 +8,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 require('dotenv').config();
 
 const sess = {
-    secret: process.env.SESSION_SECRET,
+    secret: 'MySecret',
     cookie: {},
     resave: false,
     saveUninitialized: true,
@@ -24,8 +24,6 @@ const sess = {
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-app.get('/', (req, res) => res.send("Hello!"))
 
 app.engine(".hbs", exphbs({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
