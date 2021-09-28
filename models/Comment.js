@@ -5,7 +5,6 @@ class Comment extends Model {}
 
 Comment.init(
   {
-    {
       id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
@@ -36,7 +35,6 @@ Comment.init(
           }
         }
     },
-  },
   {
     sequelize,
     modelName: 'comment',
