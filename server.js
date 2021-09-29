@@ -9,8 +9,11 @@ require('dotenv').config();
 
 const sess = {
     secret: 'SecretKey',
-    cookie: {},
-    resave: false,
+    cookie: {
+      // The session will expire after 10 minutes
+      expires: 10 * 60 * 60 * 1000
+    },
+    resave: true,
     saveUninitialized: true,
     store: new SequelizeStore({
       db: sequelize
