@@ -1,8 +1,8 @@
 <h1>HOME PAGE</h1>
-{{#if blogs.length}}
+{{#if posts.length}}
 
-{{#each blogs as |blog|}}
-    {{> blogCard}}
+{{#each posts as |post|}}
+    {{> blogCard post}}
 {{/each}}
 
 {{else}}
