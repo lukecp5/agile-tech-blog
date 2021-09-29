@@ -1,9 +1,23 @@
 const router = require("express").Router();
 const { Post } = require('../../models');
+const withAuth = require('../../utils/auth')
 
 router.get('/new', (req, res) => {
     res.render("blogNew")
 })
+
+router.post('/', withAuth, (req, res) => {
+  Post.create({
+    title: req.body.title,
+    post_content: req.body.post_content,
+    user_id: req.session.user_id
+  })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 router.get('/:id', (req, res) => {
     const post = {
