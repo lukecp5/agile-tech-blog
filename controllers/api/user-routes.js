@@ -16,12 +16,13 @@ router.post('/', (req, res) => {
           req.session.user_id = dbUserData.id;
           req.session.username = dbUserData.username;
           req.session.loggedIn = true;
-      
           res.json(dbUserData);
         });
       });
     });
   
+
+    //Api/user/login
     router.post('/login', (req, res) => {
       User.findOne({
         where: {
