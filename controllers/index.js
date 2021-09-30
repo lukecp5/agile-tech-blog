@@ -7,12 +7,14 @@ const blogRoutes = require("./view/blog");
 const apiAuthRoutes = require("./api/auth");
 const apiBlogRoutes = require("./api/blog");
 const apiCommentRoutes = require("./api/comment");
+const userRoutes = require("./api/user-routes");
 
 router.use("/", homeRoutes);
 router.use("/", authRoutes);
 router.use("/dashboard", dashboardRoutes);
 router.use("/blogs", blogRoutes);
 router.use("/api", apiAuthRoutes);
+router.use("/api/users", userRoutes)
 router.use("/api/blogs", apiBlogRoutes);
 router.use("/api/comments", apiCommentRoutes);
 
