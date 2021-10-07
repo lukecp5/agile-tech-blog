@@ -49,6 +49,49 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET api/posts/:id -- get a single post by id
+router.get('/:id', (req, res) => {
+    Post.findOne({
+      where: {
+        // specify the post id parameter in the query
+        id: req.params.id
+      },
+      // Query configuration, as with the get all posts route
+      attributes: [
+        'id',
+        'post_text',
+        'title',
+        'created_at',
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+            model: Comment,
+            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
+        }
+      ]
+    })
+      .then(dbPostData => {
+        // if no post by that id exists, return an error
+        if (!dbPostData) {
+          res.status(404).json({ message: 'No post found with this id' });
+          return;
+        }
+        res.json(dbPostData);
+      })
+      .catch(err => {
+        // if a server error occured, return an error
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 
 module.exports = router;
