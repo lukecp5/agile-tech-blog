@@ -7,12 +7,8 @@ class User extends Model {
         return bcrypt.compareSync(loginPw, this.password);
     }
 }
-
-// define the table columns and configuration
 User.init(
   {
-    // TABLE COLUMN DEFINITIONS
-    // define an id column
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
