@@ -3,13 +3,20 @@ const { User } = require('../../models');
 
 router.post('/register', async (req, res) => {
     try {
-      const userData = await User.create(req.body);
+      const userData = await User.create(
+        {
+          email: req.body.email,
+          password: req.body.password,
+          username: req.body.username,
+        }
+      );
       if (userData) {
           res.status(201).send('ok')
       } else {
         res.status(400).send('user not created')
       }
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   });
@@ -36,12 +43,11 @@ router.post('/register', async (req, res) => {
   
       req.session.save(() => {
         // declare session variables
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+        req.session.user_id = userData.id;
         req.session.loggedIn = true;
-  
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
       });
+        
+        res.json({ user: userData, message: 'You are now logged in!' });
 
   
     } catch (err) {
