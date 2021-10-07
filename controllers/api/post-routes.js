@@ -93,5 +93,20 @@ router.get('/:id', (req, res) => {
       });
   });
 
+// POST api/posts -- create a new post
+router.post('/', withAuth, (req, res) => {
+    // expects object of the form {title: 'Sample Title Here', post_text: 'Here's some sample text for a post.', user_id: 1}
+    Post.create({
+        title: req.body.title,
+        post_text: req.body.post_text,
+        user_id: req.session.user_id
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 
 module.exports = router;
