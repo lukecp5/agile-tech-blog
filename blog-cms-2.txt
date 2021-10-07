@@ -1,0 +1,44 @@
+1. Set-up folder structure - Set up server.js or atleast start a server and use public folder
+	Do this in project repo so everyone can start working on their part without merge conflicts
+
+2. VIEW:  Set up a basic main layout - {{{body}}} add the link to your CSS framework (Add public folder) and add navigation links to be able to test routes 
+VIEW ROUTES:	
+	- / *
+	- /login *
+	- /blogs/:id *
+	- /register *
+	- /blogs/new *
+	- /blogs/edit/:id *
+	- /dashboard *
+
+API ROUTES:
+	-/api/login
+	-/api/logout
+	-/api/register
+	-/api/blogs/:id put
+	-/api/blogs/:id delete
+	-/api/blogs/ post
+	-/api/comments/:id put
+	-/api/comments/:id delete
+	-/api/comments/ post
+	
+3. Set-up basic handlebars templates - make basic skeleton files
+	- Home
+	- Dashboard(Protected)
+	- Login
+	- Register
+	- Blog post page(Protected)
+	- Blog edit page(Protected)
+	- Blog create page (Protected)
+
+3a. Set up router code
+	- view routes index file
+	- view routes file
+	- add view routes to index file
+	- add index file to controllers index
+	- add controller code to server.js
+
+4. Set up basic view routes pointing to handlebars
+	- Home
+	- 
+
