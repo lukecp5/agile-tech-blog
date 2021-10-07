@@ -1,5 +1,5 @@
 {
-  "name": "blog-cms-2",
+  "name": "agile-tech-blog",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,8 +14,8 @@
     "cms",
     "blogs"
   ],
-  "author": "Trey Eckels",
-  "license": "ISC",
+  "author": "Luke Poirrier",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.4",
@@ -27,7 +27,7 @@
     "sequelize": "^6.3.5"
   },
   "bugs": {
-    "url": "https://github.com/treyeckels/blog-cms-2/issues"
+    "url": "https://github.com/lukecp5/agile-tech-blog/issues"
   },
-  "homepage": "https://github.com/treyeckels/blog-cms-2#readme"
+  "homepage": "https://github.com//lukecp5/agile-tech-blog#readme"
 }

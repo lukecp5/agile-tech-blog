@@ -5,15 +5,11 @@ const routes = require("./controllers");
 const session = require('express-session');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-require('dotenv').config();
 
 const sess = {
-    secret: 'SecretKey',
-    cookie: {
-      // The session will expire after 10 minutes
-      expires: 10 * 60 * 60 * 1000
-    },
-    resave: true,
+    secret: process.env.SESSION_SECRET,
+    cookie: {},
+    resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
       db: sequelize
@@ -22,6 +18,7 @@ const sess = {
 
 // const {
 //     User,
+//     Comment,
 //     Post
 //   } = require("./models")
 

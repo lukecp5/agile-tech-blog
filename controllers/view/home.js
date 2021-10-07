@@ -1,41 +1,27 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require('../../models');
+const { Post, User } = require('../../models');
 
-router.get('/', (req, res) => {
-  console.log(req.session);
+router.get('/', async (req, res) => {
+    const userId = 1;
+    
+    try {
+      const postData = await Post.findAll({
+        include: [User],
+      });
   
-  Post.findAll({
-    attributes: [
-      'id',
-      'title',
-      'created_at',
-      'post_content'
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at']
-        // include: {
-        //   model: User,
-        //   attributes: ['username']
-        // }
-      },
-      // {
-      //   model: User,
-      //   attributes: ['username']
-      // }
-    ]
-  })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render('home', {
-          posts,
-          loggedIn: req.session.loggedIn
-        });
-    })
-    .catch(err => {
-      console.log(err);
+      const blogs = postData.map((post) => {
+        const data = post.get({ plain: true })
+
+        return {
+          ...data,
+          isAuthor: data.user.id === userId,
+        };
+      });
+  
+      res.render("home", {blogs})
+    } catch (err) {
       res.status(500).json(err);
-    });
-});
+    }
+})
+
 module.exports = router
